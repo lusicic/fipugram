@@ -38,7 +38,7 @@ export default {
         filteredCards() {
             let termin = this.store.searchTerm;
 
-            this.cards.filter(card => card.description.includes(termin));     
+            return this.cards.filter(card => card.description.includes(termin));     
         },
     },
     components: {

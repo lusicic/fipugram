@@ -4,7 +4,7 @@
             <!-- Just an image -->
 
         <a class="navbar-brand" href="#">
-        <img src="@/assets/fipu_logo.png" alt="">
+        <img src="@/assets/fipu_logo.png" alt="" height="24">
         </a>
 
         <button class="navbar-toggler" 

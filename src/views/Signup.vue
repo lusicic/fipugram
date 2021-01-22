@@ -10,6 +10,7 @@
                         <label for="exampleInputEmail1">Email address</label>
                         <input
                             type="email"
+                            v-model="username"
                             class="form-control"
                             id="exampleInputEmail1"
                             aria-describedby="emailHelp"
@@ -21,16 +22,45 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Password</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" />
+                        <input type="password" v-model="password" class="form-control" id="exampleInputPassword1" placeholder="Password" />
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputPassword2">Password</label>
-                        <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password" />
+                        <label for="exampleInputPassword2">Repeat password</label>
+                        <input type="password" v-model="passwordRepeat" class="form-control" id="exampleInputPassword2" placeholder="Password" />
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="button" @click="signup" class="btn btn-primary">Submit</button>
                 </form>
             </div>
             <div class="col"></div>
         </div>
     </div>
 </template>
+
+<script>
+import { firebase } from '@/firebase';
+
+export default {
+    name: "Signup",
+    data(){
+        return{
+            username: '',
+            password: '',
+            passwordRepeat: '',
+        };
+    },
+    methods: {
+        signup() {
+            firebase
+            .auth()
+            .createUserWithEmailAndPassword(this.username, this.password)
+            .then(function(){
+                console.log('Uspjesna registracija');
+            })
+            .catch(function(){
+                console.error('Doslo je do greske');
+            });
+            console.log('Nastavak');
+        },
+    },
+};
+</script>
