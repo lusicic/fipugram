@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col"></div>
             <div class="col">
-                <form>
+                <form @submit.prevent="signup">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Email address</label>
                         <input
@@ -37,10 +37,10 @@
 </template>
 
 <script>
-import { firebase } from '@/firebase';
+import firebase from '@/firebase';
 
 export default {
-    name: "Signup",
+    name: "signup",
     data(){
         return{
             username: '',
@@ -55,9 +55,8 @@ export default {
             .createUserWithEmailAndPassword(this.username, this.password)
             .then(function(){
                 console.log('Uspjesna registracija');
-            })
-            .catch(function(){
-                console.error('Doslo je do greske');
+            }).catch(function(){
+                console.error('Doslo do greske');
             });
             console.log('Nastavak');
         },
